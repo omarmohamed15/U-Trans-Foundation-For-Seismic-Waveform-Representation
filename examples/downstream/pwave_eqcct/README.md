@@ -9,7 +9,7 @@ This repository provides a complete example of training and testing a **P-wave p
 
 ---
 
-#  Dataset
+# 📚 Dataset
 
 ## STEAD (Stanford Earthquake Dataset)
 
@@ -27,7 +27,7 @@ In this example:
 
 ---
 
-# ? Purpose of This Example
+# 🎯 Purpose of This Example
 
 This pipeline demonstrates how to:
 
@@ -41,35 +41,35 @@ This setup reproduces the California STEAD experiment using the **U-Trans + EQCC
 
 ---
 
-# ? Required Files
+# 📂 Required Files
 
 The following files must be prepared before running the example:
 
-### 1?? Dataset File
+### 1️⃣ Dataset File
 
 `DataCollected`  
-? HDF5 file containing STEAD California traces  
+→ HDF5 file containing STEAD California traces  
 
 Each trace must be stored under its trace ID as a group:
 
 ```
 <Trace_ID>/
-    ??? data  (6000 × 3 waveform array)
+    └── data  (6000 × 3 waveform array)
 ```
 
 ---
 
-### 2?? Train / Validation / Test Splits
+### 2️⃣ Train / Validation / Test Splits
 
-- `train_Events.npy` ? Training trace IDs  
-- `valid_Events.npy` ? Validation trace IDs  
-- `test_Events.npy` ? Test trace IDs  
+- `train_Events.npy` → Training trace IDs  
+- `valid_Events.npy` → Validation trace IDs  
+- `test_Events.npy` → Test trace IDs  
 
 Each `.npy` file should contain a list/array of trace IDs that match the keys inside the HDF5 file.
 
 ---
 
-# ? Project Structure
+# 🏗 Project Structure
 
 ```
 01_train/
@@ -89,17 +89,17 @@ EQCCT_P_utils.py
 
 ---
 
-# ? Model Architecture
+# 🧠 Model Architecture
 
 This experiment combines:
 
-## ? U-Trans Foundation Backbone
+## 🔹 U-Trans Foundation Backbone
 
-- U-Net encoder?decoder structure  
+- U-Net encoder–decoder structure  
 - Transformer bottleneck representation  
 - Learns generalized seismic waveform representations  
 
-## ? EQCCT P-wave Head
+## 🔹 EQCCT P-wave Head
 
 - Convolutional preprocessing  
 - Patch tokenization  
@@ -108,9 +108,9 @@ This experiment combines:
 
 ---
 
-# ? Workflow
+# 🔄 Workflow
 
-## Step 1  Train Model
+## Step 1 — Train Model
 
 Run training from:
 
@@ -130,7 +130,7 @@ This will:
 
 ---
 
-## Step 2  Run Testing
+## Step 2 — Run Testing
 
 Run inference from:
 
@@ -140,12 +140,12 @@ Run inference from:
 
 Tester parameters include:
 
-- `input_model` ? path to trained weights  
-- `input_hdf5` ? dataset path  
-- `input_testset` ? test IDs  
-- `P_threshold` ? minimum probability for P-pick  
-- `detection_threshold` ? event detection threshold  
-- `estimate_uncertainty` ? enable Monte Carlo sampling (optional)  
+- `input_model` → path to trained weights  
+- `input_hdf5` → dataset path  
+- `input_testset` → test IDs  
+- `P_threshold` → minimum probability for P-pick  
+- `detection_threshold` → event detection threshold  
+- `estimate_uncertainty` → enable Monte Carlo sampling (optional)  
 
 Outputs include:
 
@@ -156,7 +156,7 @@ Outputs include:
 
 ---
 
-## Step 3  Extract P Picks
+## Step 3 — Extract P Picks
 
 Use:
 
@@ -173,7 +173,7 @@ This module:
 
 ---
 
-# ?? Configuration
+# ⚙️ Configuration
 
 ### Input Shape
 ```
@@ -192,21 +192,21 @@ generator   # memory-efficient batch processing
 
 ---
 
-# ? Threshold Selection
+# 📊 Threshold Selection
 
 - `P_threshold` controls pick sensitivity  
-- Lower ? more picks (higher recall, lower precision)  
-- Higher ? fewer picks (higher precision, lower recall)  
+- Lower → more picks (higher recall, lower precision)  
+- Higher → fewer picks (higher precision, lower recall)  
 
 Recommended range:
 
 ```
-0.05 ? 0.20
+0.05 – 0.20
 ```
 
 ---
 
-# ? Uncertainty Estimation (Optional)
+# 🔬 Uncertainty Estimation (Optional)
 
 If enabled:
 
@@ -221,7 +221,7 @@ This increases computation time.
 
 ---
 
-#  Hardware Notes
+# 🖥 Hardware Notes
 
 - GPU recommended  
 - Batch size depends on GPU memory  
@@ -229,21 +229,21 @@ This increases computation time.
 
 ---
 
-#  Summary
+# 📌 Summary
 
 This repository demonstrates a full end-to-end experiment for:
 
-? Training  
-? Validation  
-? Testing  
-? P-wave picking  
-? Evaluation  
+✔ Training  
+✔ Validation  
+✔ Testing  
+✔ P-wave picking  
+✔ Evaluation  
 
 Using the **U-Trans foundation model combined with an EQCCT transformer head** on the **California subset of STEAD**.
 
 ---
 
-#  Citation
+# 📎 Citation
 
 If you use this implementation, please cite:
 

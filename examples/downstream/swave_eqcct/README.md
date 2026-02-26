@@ -4,7 +4,7 @@
 This repository provides a complete example of training and testing an **S-wave picking model** using:
 
 - **U-Trans foundation backbone**
-- **EQCCT transformer-based picking head**
+- **EQCCT transformer-based picking model**
 - **California subset of the STEAD dataset**
 
 ---
@@ -99,7 +99,7 @@ This experiment combines:
 - Transformer bottleneck representation  
 - Learns generalized seismic waveform representations  
 
-## 🔹 EQCCT S-wave Head
+## 🔹 EQCCT S-wave Model
 
 - Convolutional preprocessing  
 - Patch tokenization  
@@ -224,7 +224,7 @@ This repository demonstrates a full end-to-end experiment for:
 ✔ S-wave picking  
 ✔ Evaluation  
 
-Using the **U-Trans foundation model combined with an EQCCT transformer head** on the **California subset of STEAD**.
+Using the **U-Trans foundation model combined with an EQCCT transformer model** on the **California subset of STEAD**.
 
 ---
 

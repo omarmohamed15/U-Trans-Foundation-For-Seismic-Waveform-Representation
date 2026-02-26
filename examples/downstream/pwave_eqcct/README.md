@@ -206,21 +206,6 @@ Recommended range:
 
 ---
 
-# 🔬 Uncertainty Estimation (Optional)
-
-If enabled:
-
-```
-estimate_uncertainty=True
-number_of_sampling=5+
-```
-
-The model performs multiple stochastic forward passes and computes prediction variance.
-
-This increases computation time.
-
----
-
 # 🖥 Hardware Notes
 
 - GPU recommended  

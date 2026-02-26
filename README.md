@@ -138,13 +138,38 @@ Each downstream module attaches to the U-Trans latent or decoder representation.
 You can load and extract features using:
 
 ```python
+import os
+import sys
+import numpy as np
+
+# ---------------------------------------------------------
+# If notebook is inside examples/, add repo root to path
+# ---------------------------------------------------------
+sys.path.insert(0, os.path.abspath(".."))
+
 from utrans.foundation import get_latent_model, get_decoder_model
 
-# Load latent token model
-latent_model = get_latent_model("weights/UTrans_Foundation.h5")
 
-# Load decoder feature model
-decoder_model, decoder_tensor = get_decoder_model("weights/UTrans_Foundation.h5")
+# ---------------------------------------------------------
+# Path to pretrained foundation weights
+# ---------------------------------------------------------
+UNET_WEIGHTS = "../weights/UTrans_Foundation.h5"
+
+
+# ---------------------------------------------------------
+# Model that outputs transformer latent tokens
+# Expected output shape: (B, 75, 80)
+# ---------------------------------------------------------
+latent_model = get_latent_model(UNET_WEIGHTS)
+
+
+# ---------------------------------------------------------
+# Model that outputs decoder features
+# ready_to_concatenate_model -> Keras model
+# Featuear_Ready_to_Concatenate -> feature tensor shape
+# Expected decoder feature shape: (B, 6000, 1)
+# ---------------------------------------------------------
+ready_to_concatenate_model, Featuear_Ready_to_Concatenate = get_decoder_model(UNET_WEIGHTS)
 ```
 
 ### Outputs
@@ -192,5 +217,6 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 

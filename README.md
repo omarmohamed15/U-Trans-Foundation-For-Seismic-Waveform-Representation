@@ -200,7 +200,6 @@ U-Trans is designed to:
 - Transformer bottleneck modeling  
 - Token-based latent embedding  
 - Modular downstream integration  
-- Compatible with uncertainty-aware extensions  
 
 ---
 
@@ -218,6 +217,7 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 
 

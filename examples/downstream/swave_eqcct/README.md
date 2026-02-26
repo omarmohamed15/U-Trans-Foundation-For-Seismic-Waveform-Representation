@@ -61,7 +61,7 @@ Each trace must be stored under its trace ID as a group:
 
 ### 2️⃣ Train / Validation / Test Splits
 
-- `train_Events.npy` → Training trace IDs  
+- `train_Events.npy` → Training trace IDs ([Google Drive](https://drive.google.com/file/d/18q_gAZr4p6uuTRK_cqO9fBj1S7LWqt8_/view?usp=drive_link))
 - `valid_Events.npy` → Validation trace IDs  
 - `test_Events.npy` → Test trace IDs  
 

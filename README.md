@@ -13,6 +13,7 @@ This repository provides:
 - ✅ Latent feature extraction  
 - ✅ Modular downstream task architectures  
 - ✅ Example usage notebooks  
+- ✅ Unified seismic dataset construction pipeline  
 
 ---
 
@@ -86,12 +87,71 @@ This stream can be directly concatenated with the input of the downstream task m
 
 ---
 
+# 📂 Data Preparation
+
+A dedicated `data/` folder is provided to construct a unified seismic dataset for foundation training and downstream experiments.
+
+The combined dataset is built from:
+
+- **STEAD** – https://github.com/smousavi05/STEAD  
+- **INSTANCE** – https://github.com/INGV/instance  
+- **TXED** – https://github.com/chenyk1990/txed  
+
+### 🔽 Download Instructions
+
+1. Download all three datasets from their official repositories.
+2. Create a folder in your project directory called:
+
+```
+Data_Seismic
+```
+
+3. Place the downloaded datasets inside:
+
+```
+Data_Seismic/
+    ├── STEAD/
+    ├── INSTANCE/
+    └── TXED/
+```
+
+4. Run the script inside the `data/` folder to merge them.
+
+The script generates a unified HDF5 file:
+
+```
+DataCollected
+```
+
+This file standardizes waveform shape to:
+
+```
+(6000, 3)
+```
+
+and harmonizes metadata across datasets.
+
+The combined dataset is used for:
+
+- Foundation pretraining  
+- P-wave picking  
+- S-wave picking  
+- Magnitude estimation  
+- Event location  
+- Polarity classification  
+
+---
+
 # 🏗 Repository Structure
 
 ```
 .
 ├── assets/
 │   └── logo.png
+│
+├── data/
+│   ├── data.py
+│   └── README.md
 │
 ├── examples/
 │   ├── foundation_usage.ipynb
@@ -100,7 +160,7 @@ This stream can be directly concatenated with the input of the downstream task m
 │       ├── swave_eqcct/
 │       ├── magnitude_ViT/
 │       ├── location_ConvMixer/
-|       └── polarity_CCT/
+│       └── polarity_CCT/
 │
 ├── utrans/
 │   ├── foundation.py
@@ -125,11 +185,11 @@ examples/downstream/
 
 Available architectures include:
 
-- `pwave_eqcct/` → Transformer-based P-wave picking EQCCT  
-- `swave_eqcct/` → Transformer-based-S-wave picking EQCCT  
-- `magnitude_ViT/` → Magnitude estimation ViT  
-- `location_ConvMixer/` → Event location ConvMixer
-- `polarity_CCT/` → Polarity classification CCT
+- `pwave_eqcct/` → Transformer-based P-wave picking (EQCCT)  
+- `swave_eqcct/` → Transformer-based S-wave picking (EQCCT)  
+- `magnitude_ViT/` → Magnitude estimation (ViT)  
+- `location_ConvMixer/` → Event location (ConvMixer)  
+- `polarity_CCT/` → Polarity classification (CCT)  
 
 Each downstream module attaches to the U-Trans latent or decoder representation.
 
@@ -137,41 +197,23 @@ Each downstream module attaches to the U-Trans latent or decoder representation.
 
 # 🚀 Using the Foundation Model
 
-You can load and extract features using "examples/foundation_usage.ipynb":
+You can load and extract features using `examples/foundation_usage.ipynb`:
 
 ```python
 import os
 import sys
 import numpy as np
 
-# ---------------------------------------------------------
-# If notebook is inside examples/, add repo root to path
-# ---------------------------------------------------------
 sys.path.insert(0, os.path.abspath(".."))
 
 from utrans.foundation import get_latent_model, get_decoder_model
 
-
-# ---------------------------------------------------------
-# Path to pretrained foundation weights
-# ---------------------------------------------------------
 UNET_WEIGHTS = "../weights/UTrans_Foundation.h5"
 
-
-# ---------------------------------------------------------
-# Model that outputs transformer latent tokens
-# Expected output shape: (B, 75, 80)
-# ---------------------------------------------------------
 latent_model = get_latent_model(UNET_WEIGHTS)
 
-
-# ---------------------------------------------------------
-# Model that outputs decoder features
-# ready_to_concatenate_model -> Keras model
-# Featuear_Ready_to_Concatenate -> feature tensor shape
-# Expected decoder feature shape: (B, 6000, 1)
-# ---------------------------------------------------------
-ready_to_concatenate_model, Featuear_Ready_to_Concatenate = get_decoder_model(UNET_WEIGHTS)
+ready_to_concatenate_model, Featuear_Ready_to_Concatenate = \
+    get_decoder_model(UNET_WEIGHTS)
 ```
 
 ### Outputs
@@ -216,14 +258,3 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
-
----
-
-
-
-
-
-
-
-
-

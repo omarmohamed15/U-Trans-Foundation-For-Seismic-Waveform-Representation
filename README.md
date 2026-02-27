@@ -33,7 +33,6 @@ Foundation representation  →  Latent features  →  Downstream models
 
 ---
 
----
 
 # 🛠 Environment Setup
 
@@ -52,13 +51,13 @@ The environment file includes:
 After cloning the repository, create the environment using:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f Foundation.yml
 ```
 
 Then activate it:
 
 ```bash
-conda activate utrans
+conda activate Foundation
 ```
 
 This guarantees compatibility with:
@@ -348,3 +347,4 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
+

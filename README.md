@@ -137,7 +137,7 @@ Each downstream module attaches to the U-Trans latent or decoder representation.
 
 # 🚀 Using the Foundation Model
 
-You can load and extract features using:
+You can load and extract features using "examples/foundation_usage.ipynb":
 
 ```python
 import os
@@ -218,6 +218,7 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 
 

@@ -177,6 +177,86 @@ The foundation model can also output:
 This stream can be directly concatenated with downstream task models.
 
 ---
+# 🚀 Using the Foundation Model
+
+Load pretrained weights and extract features:
+
+```python
+import os
+import sys
+import numpy as np
+
+sys.path.insert(0, os.path.abspath(".."))
+
+from utrans.foundation import get_latent_model, get_decoder_model
+
+UNET_WEIGHTS = "../weights/UTrans_Foundation.h5"
+
+latent_model = get_latent_model(UNET_WEIGHTS)
+
+ready_to_concatenate_model, Featuear_Ready_to_Concatenate = \
+    get_decoder_model(UNET_WEIGHTS)
+```
+
+### Outputs
+
+- Latent tokens → `(B, 75, 80)`  
+- Decoder features → `(B, 6000, 1)`  
+
+---
+
+# 🔬 Design Philosophy
+
+U-Trans is designed to:
+
+- Learn general waveform representations  
+- Enable modular downstream experimentation  
+- Separate representation learning from task-specific modeling  
+- Support transformer-based extensions  
+- Scale to multiple seismic tasks  
+
+---
+
+
+# 🏗 Repository Structure
+
+```
+.
+├── assets/
+│   └── logo.png
+│
+├── data/
+│   ├── Collected_Large_Dataset.ipynb
+│   └── README.md
+│
+├── train/
+│   ├── U-Trans_Train.ipynb
+│   ├── EqT_utils_Recon.py
+│   ├── IDS_Collected_Data_train.npy
+│   ├── IDS_Collected_Data_valid.npy
+│   └── IDS_Collected_Data_test.npy
+│
+├── examples/
+│   ├── foundation_usage.ipynb
+│   └── downstream/
+│       ├── pwave_eqcct/
+│       ├── swave_eqcct/
+│       ├── magnitude_ViT/
+│       ├── location_ConvMixer/
+│       └── polarity_CCT/
+│
+├── utrans/
+│   ├── foundation.py
+│   ├── preprocessing.py
+│   └── layers.py
+│
+├── weights/
+│   └── UTrans_Foundation.h5
+│
+└── README.md
+```
+
+---
 
 # 🧪 Foundation Training
 
@@ -222,47 +302,7 @@ train/
   Trace IDs reserved for evaluation/testing.
 
 ID files can be downloaded from:  
-https://drive.google.com/file/d/1UCx7Qnx-IIjSr4gBy_bipM8mI28hFeCQ/view?usp=drive_link
-
----
-
-# 🏗 Repository Structure
-
-```
-.
-├── assets/
-│   └── logo.png
-│
-├── data/
-│   ├── Collected_Large_Dataset.ipynb
-│   └── README.md
-│
-├── train/
-│   ├── U-Trans_Train.ipynb
-│   ├── EqT_utils_Recon.py
-│   ├── IDS_Collected_Data_train.npy
-│   ├── IDS_Collected_Data_valid.npy
-│   └── IDS_Collected_Data_test.npy
-│
-├── examples/
-│   ├── foundation_usage.ipynb
-│   └── downstream/
-│       ├── pwave_eqcct/
-│       ├── swave_eqcct/
-│       ├── magnitude_ViT/
-│       ├── location_ConvMixer/
-│       └── polarity_CCT/
-│
-├── utrans/
-│   ├── foundation.py
-│   ├── preprocessing.py
-│   └── layers.py
-│
-├── weights/
-│   └── UTrans_Foundation.h5
-│
-└── README.md
-```
+[Download ID Files (Google Drive)](https://drive.google.com/file/d/1UCx7Qnx-IIjSr4gBy_bipM8mI28hFeCQ/view?usp=drive_link)
 
 ---
 
@@ -283,46 +323,6 @@ Available architectures include:
 - `polarity_CCT/` → Polarity classification (CCT)  
 
 Each downstream module attaches to the U-Trans latent or decoder representation.
-
----
-
-# 🚀 Using the Foundation Model
-
-Load pretrained weights and extract features:
-
-```python
-import os
-import sys
-import numpy as np
-
-sys.path.insert(0, os.path.abspath(".."))
-
-from utrans.foundation import get_latent_model, get_decoder_model
-
-UNET_WEIGHTS = "../weights/UTrans_Foundation.h5"
-
-latent_model = get_latent_model(UNET_WEIGHTS)
-
-ready_to_concatenate_model, Featuear_Ready_to_Concatenate = \
-    get_decoder_model(UNET_WEIGHTS)
-```
-
-### Outputs
-
-- Latent tokens → `(B, 75, 80)`  
-- Decoder features → `(B, 6000, 1)`  
-
----
-
-# 🔬 Design Philosophy
-
-U-Trans is designed to:
-
-- Learn general waveform representations  
-- Enable modular downstream experimentation  
-- Separate representation learning from task-specific modeling  
-- Support transformer-based extensions  
-- Scale to multiple seismic tasks  
 
 ---
 
@@ -347,5 +347,6 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
+
 
 

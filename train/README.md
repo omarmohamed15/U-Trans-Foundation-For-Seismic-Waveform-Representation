@@ -15,10 +15,9 @@ The `train/` directory includes:
 
 - `EqT_utils_Recon.py`  
   Utility functions for:
-  - Waveform preprocessing  
+  - Waveform preprocessing
+  - Frequency-domain corruption (spectral masking/perturbation)  
   - Time-domain corruption (masking, noise injection, gaps)  
-  - Frequency-domain corruption (spectral masking / perturbation)  
-  - Data generator logic  
   - Learning rate scheduling  
   - Training callbacks  
 
@@ -30,6 +29,10 @@ The `train/` directory includes:
 
 - `IDS_Collected_Data_test.npy`  
   Trace IDs reserved for evaluation/testing.
+
+These ID split files can be downloaded from:
+
+[Download IDS_Collected_Data Splits](https://drive.google.com/file/d/1UCx7Qnx-IIjSr4gBy_bipM8mI28hFeCQ/view?usp=drive_link)
 
 ---
 

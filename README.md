@@ -292,18 +292,6 @@ train/
   - Data generators  
   - Training configuration  
 
-- `IDS_Collected_Data_train.npy`  
-  Trace IDs used for training.
-
-- `IDS_Collected_Data_valid.npy`  
-  Trace IDs used for validation.
-
-- `IDS_Collected_Data_test.npy`  
-  Trace IDs reserved for evaluation/testing.
-
-ID files can be downloaded from:  
-[Download ID Files (Google Drive)](https://drive.google.com/file/d/1UCx7Qnx-IIjSr4gBy_bipM8mI28hFeCQ/view?usp=drive_link)
-
 ---
 
 # 🔌 Downstream Architectures
@@ -347,6 +335,7 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
+
 
 
 

@@ -128,7 +128,8 @@ Available architectures include:
 - `pwave_eqcct/` → Transformer-based P-wave picking EQCCT  
 - `swave_eqcct/` → Transformer-based-S-wave picking EQCCT  
 - `magnitude_ViT/` → Magnitude estimation ViT  
-- `location_ConvMixer/` → Event location ConvMixer  
+- `location_ConvMixer/` → Event location ConvMixer
+- `polarity_CCT/` → Polarity classification CCT
 
 Each downstream module attaches to the U-Trans latent or decoder representation.
 
@@ -217,6 +218,7 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 
 

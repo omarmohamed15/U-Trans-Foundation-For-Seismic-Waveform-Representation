@@ -27,7 +27,7 @@ U-Trans follows a **foundation model paradigm**:
 The architecture separates:
 
 ```
-Foundation representation  →  Latent features  →  Downstream heads
+Foundation representation  →  Latent features  →  Downstream models
 ```
 
 ---
@@ -117,7 +117,7 @@ This stream can be directly concatenated with the input of the downstream task m
 
 # 🔌 Downstream Architectures
 
-Example downstream heads are provided inside:
+Example downstream models are provided inside:
 
 ```
 examples/downstream/
@@ -217,6 +217,7 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 
 

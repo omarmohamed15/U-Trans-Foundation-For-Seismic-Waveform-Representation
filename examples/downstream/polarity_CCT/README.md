@@ -1,19 +1,19 @@
 # U-Trans + CCT  
-## California STEAD Example (Polarity Classification)
+## Texas Example (Polarity Classification)
 
 This repository provides a complete example of training and testing a **seismic polarity classification model** using:
 
 - **U-Trans foundation backbone**
 - **Compact Convolutional Transformer (CCT)-based polarity classification model**
-- **California subset of the STEAD dataset**
+- **Texas subset of the Texas dataset**
 
 ---
 
 # 📚 Dataset
 
-## STEAD (Stanford Earthquake Dataset)
+## TXED (Texas Seismic Dataset)
 
-STEAD is a large-scale seismic waveform dataset containing:
+Texas is a large-scale seismic waveform dataset containing:
 
 - 3-component waveform recordings  
 - Earthquake and noise traces  
@@ -21,7 +21,7 @@ STEAD is a large-scale seismic waveform dataset containing:
 
 In this example:
 
-- Only the **California region subset** is used.
+- Only the **Texas region subset** is used.
 - Each waveform has a fixed length of **6000 samples**.
 - Input shape is **(6000, 3)** representing three-component seismic data.
 - Event metadata includes ground-truth first-motion polarity labels.
@@ -32,12 +32,12 @@ In this example:
 
 This pipeline demonstrates how to:
 
-- Train a polarity classification model on California STEAD traces  
+- Train a polarity classification model on Texas Texas traces  
 - Classify first-motion polarity (e.g., Up / Down)  
 - Evaluate classification performance  
 - Test the trained model on a held-out test set  
 
-This setup reproduces the California STEAD experiment using the **U-Trans + CCT architecture**.
+This setup reproduces the Texas Texas experiment using the **U-Trans + CCT architecture**.
 
 ---
 
@@ -48,7 +48,7 @@ The following files must be prepared before running the example:
 ### 1️⃣ Dataset File
 
 `DataCollected`  
-→ HDF5 file containing STEAD California traces  
+→ HDF5 file containing Texas Texas traces  
 
 Each trace must be stored under its trace ID as a group:
 
@@ -83,10 +83,10 @@ Each `.npy` file should contain trace IDs that match keys inside the HDF5 file.
 03_read/
     Post-processing and evaluation utilities
 
-EqT_utils_Polarity_California.py
+EqT_utils_Polarity_Texas.py
     DataGenerator
     Learning rate scheduler
-    Dataset utilities for California polarity task
+    Dataset utilities for Texas polarity task
 ```
 
 ---
@@ -225,7 +225,7 @@ This repository demonstrates a full end-to-end experiment for:
 ✔ Seismic polarity classification  
 ✔ Performance evaluation  
 
-Using the **U-Trans foundation model combined with a Compact Convolutional Transformer (CCT) classification model** on the **California subset of STEAD**.
+Using the **U-Trans foundation model combined with a Compact Convolutional Transformer (CCT) classification model** on the **Texas subset of Texas**.
 
 ---
 

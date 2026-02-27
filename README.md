@@ -10,9 +10,9 @@ U-Trans is a **foundation model for seismic waveform representation** designed t
 This repository provides:
 
 - ✅ U-Trans foundation backbone  
+- ✅ Self-supervised foundation training pipeline  
 - ✅ Latent feature extraction  
 - ✅ Modular downstream task architectures  
-- ✅ Example usage notebooks  
 - ✅ Unified seismic dataset construction pipeline  
 
 ---
@@ -30,6 +30,45 @@ The architecture separates:
 ```
 Foundation representation  →  Latent features  →  Downstream models
 ```
+
+---
+
+---
+
+# 🛠 Environment Setup
+
+To ensure full reproducibility, this repository provides a YAML configuration file containing the exact conda environment used for development and training.
+
+The environment file includes:
+
+- Python version  
+- TensorFlow and deep learning dependencies  
+- Scientific computing libraries  
+- Visualization tools  
+- Required utility packages  
+
+## 📦 Create the Environment
+
+After cloning the repository, create the environment using:
+
+```bash
+conda env create -f environment.yml
+```
+
+Then activate it:
+
+```bash
+conda activate utrans
+```
+
+This guarantees compatibility with:
+
+- Foundation training
+- Downstream tasks
+- Data processing
+- Evaluation pipelines
+
+Using the provided YAML file ensures consistent results across different systems and hardware setups.
 
 ---
 
@@ -83,7 +122,7 @@ The foundation model can also output:
 (B, 6000, 1)
 ```
 
-This stream can be directly concatenated with the input of the downstream task models.
+This stream can be directly concatenated with downstream task models.
 
 ---
 
@@ -97,7 +136,7 @@ The combined dataset is built from:
 - **INSTANCE** – https://github.com/INGV/instance  
 - **TXED** – https://github.com/chenyk1990/txed  
 
-### 🔽 Download Instructions
+## 🔽 Download Instructions
 
 1. Download all three datasets from their official repositories.
 2. Create a folder in your project directory called:
@@ -115,21 +154,19 @@ Data_Seismic/
     └── TXED/
 ```
 
-4. Run the script inside the `data/` folder to merge them.
+4. Run the notebook inside the `data/` folder to merge them.
 
-The script generates a unified HDF5 file:
+This generates a unified HDF5 file:
 
 ```
 DataCollected
 ```
 
-This file standardizes waveform shape to:
+All waveforms are standardized to:
 
 ```
 (6000, 3)
 ```
-
-and harmonizes metadata across datasets.
 
 The combined dataset is used for:
 
@@ -139,6 +176,54 @@ The combined dataset is used for:
 - Magnitude estimation  
 - Event location  
 - Polarity classification  
+
+---
+
+# 🧪 Foundation Training
+
+The `train/` folder contains the **self-supervised reconstruction training pipeline** used to train U-Trans.
+
+During training, waveforms are intentionally corrupted in:
+
+- Time domain  
+- Frequency domain  
+
+The model learns to reconstruct the original waveform, enabling robust and transferable representation learning.
+
+## 📂 Train Folder Structure
+
+```
+train/
+├── U-Trans_Train.ipynb
+├── EqT_utils_Recon.py
+├── IDS_Collected_Data_train.npy
+├── IDS_Collected_Data_valid.npy
+└── IDS_Collected_Data_test.npy
+```
+
+### File Descriptions
+
+- `U-Trans_Train.ipynb`  
+  Main notebook for training the U-Trans foundation model.
+
+- `EqT_utils_Recon.py`  
+  Utilities for:
+  - Time-domain corruption  
+  - Frequency-domain corruption  
+  - Data generators  
+  - Training configuration  
+
+- `IDS_Collected_Data_train.npy`  
+  Trace IDs used for training.
+
+- `IDS_Collected_Data_valid.npy`  
+  Trace IDs used for validation.
+
+- `IDS_Collected_Data_test.npy`  
+  Trace IDs reserved for evaluation/testing.
+
+ID files can be downloaded from:  
+https://drive.google.com/file/d/1UCx7Qnx-IIjSr4gBy_bipM8mI28hFeCQ/view?usp=drive_link
 
 ---
 
@@ -152,6 +237,13 @@ The combined dataset is used for:
 ├── data/
 │   ├── Collected_Large_Dataset.ipynb
 │   └── README.md
+│
+├── train/
+│   ├── U-Trans_Train.ipynb
+│   ├── EqT_utils_Recon.py
+│   ├── IDS_Collected_Data_train.npy
+│   ├── IDS_Collected_Data_valid.npy
+│   └── IDS_Collected_Data_test.npy
 │
 ├── examples/
 │   ├── foundation_usage.ipynb
@@ -197,7 +289,7 @@ Each downstream module attaches to the U-Trans latent or decoder representation.
 
 # 🚀 Using the Foundation Model
 
-You can load and extract features using `examples/foundation_usage.ipynb`:
+Load pretrained weights and extract features:
 
 ```python
 import os
@@ -220,8 +312,6 @@ ready_to_concatenate_model, Featuear_Ready_to_Concatenate = \
 
 - Latent tokens → `(B, 75, 80)`  
 - Decoder features → `(B, 6000, 1)`  
-
-These outputs can be connected to any downstream model.
 
 ---
 
@@ -258,4 +348,3 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
-

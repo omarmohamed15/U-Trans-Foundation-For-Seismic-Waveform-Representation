@@ -71,6 +71,59 @@ Using the provided YAML file ensures consistent results across different systems
 
 ---
 
+# 📂 Data Preparation
+
+A dedicated `data/` folder is provided to construct a unified seismic dataset for foundation training and downstream experiments.
+
+The combined dataset is built from:
+
+- **STEAD** – https://github.com/smousavi05/STEAD  
+- **INSTANCE** – https://github.com/INGV/instance  
+- **TXED** – https://github.com/chenyk1990/txed  
+
+## 🔽 Download Instructions
+
+1. Download all three datasets from their official repositories.
+2. Create a folder in your project directory called:
+
+```
+Data_Seismic
+```
+
+3. Place the downloaded datasets inside:
+
+```
+Data_Seismic/
+    ├── STEAD/
+    ├── INSTANCE/
+    └── TXED/
+```
+
+4. Run the notebook inside the `data/` folder to merge them.
+
+This generates a unified HDF5 file:
+
+```
+DataCollected
+```
+
+All waveforms are standardized to:
+
+```
+(6000, 3)
+```
+
+The combined dataset is used for:
+
+- Foundation pretraining  
+- P-wave picking  
+- S-wave picking  
+- Magnitude estimation  
+- Event location  
+- Polarity classification  
+
+---
+
 # 🧠 Architecture
 
 ## 🔹 U-Trans Foundation Backbone
@@ -122,59 +175,6 @@ The foundation model can also output:
 ```
 
 This stream can be directly concatenated with downstream task models.
-
----
-
-# 📂 Data Preparation
-
-A dedicated `data/` folder is provided to construct a unified seismic dataset for foundation training and downstream experiments.
-
-The combined dataset is built from:
-
-- **STEAD** – https://github.com/smousavi05/STEAD  
-- **INSTANCE** – https://github.com/INGV/instance  
-- **TXED** – https://github.com/chenyk1990/txed  
-
-## 🔽 Download Instructions
-
-1. Download all three datasets from their official repositories.
-2. Create a folder in your project directory called:
-
-```
-Data_Seismic
-```
-
-3. Place the downloaded datasets inside:
-
-```
-Data_Seismic/
-    ├── STEAD/
-    ├── INSTANCE/
-    └── TXED/
-```
-
-4. Run the notebook inside the `data/` folder to merge them.
-
-This generates a unified HDF5 file:
-
-```
-DataCollected
-```
-
-All waveforms are standardized to:
-
-```
-(6000, 3)
-```
-
-The combined dataset is used for:
-
-- Foundation pretraining  
-- P-wave picking  
-- S-wave picking  
-- Magnitude estimation  
-- Event location  
-- Polarity classification  
 
 ---
 
@@ -347,4 +347,5 @@ DOI: 10.1038/s41598-026-41454-x
 # 📧 Contact
 
 For questions or collaboration, please open an issue in this repository.
+
 

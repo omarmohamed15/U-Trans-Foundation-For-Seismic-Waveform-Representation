@@ -178,7 +178,7 @@ ready_to_concatenate_model, Featuear_Ready_to_Concatenate = get_decoder_model(UN
 - Latent tokens → `(B, 75, 80)`  
 - Decoder features → `(B, 6000, 1)`  
 
-These outputs can be connected to any downstream task.
+These outputs can be connected to any downstream model.
 
 ---
 
@@ -217,6 +217,7 @@ DOI: 10.1038/s41598-026-41454-x
 For questions or collaboration, please open an issue in this repository.
 
 ---
+
 
 
 
